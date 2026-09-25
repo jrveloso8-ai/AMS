@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Assessment Técnico & Funcional - Automação AMS SAP com Agentes de IA</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -272,6 +273,52 @@
       padding: 40px;
       border-radius: 12px;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
+    }
+
+    /* REGRAS MOBILE RESPONSIVAS */
+    @media (max-width: 768px) {
+      .assessment-container {
+        margin: 12px;
+        padding: 20px 16px;
+        border-radius: 8px;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .web-nav {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+        padding: 12px 14px;
+      }
+      .web-nav-brand {
+        justify-content: center;
+      }
+      .web-nav-links {
+        width: 100%;
+        display: flex;
+        gap: 6px;
+      }
+      .web-nav-link {
+        flex: 1;
+        text-align: center;
+        padding: 7px 8px;
+        font-size: 0.74rem;
+      }
+      table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .checkbox-group {
+        flex-direction: column;
+        gap: 6px;
+      }
+      h1 {
+        font-size: 1.35rem;
+      }
     }
   </style>
 </head>
