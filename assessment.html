@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Assessment Técnico & Funcional - Automação AMS SAP com Agentes de IA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+      @bottom-right {
+        content: "Página " counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.5;
+      font-size: 9.5pt;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      border-bottom: 2px solid #0f3460;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .header-content {
+      flex: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0f3460;
+      background: #e2e8f0;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 4px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 9.5pt;
+      color: #475569;
+      margin: 0;
+    }
+
+    .objective-box {
+      background-color: #f8fafc;
+      border-left: 4px solid #1e40af;
+      padding: 10px 14px;
+      margin-bottom: 22px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .objective-box p {
+      margin: 0;
+      font-size: 9pt;
+      color: #334155;
+    }
+
+    .objective-box strong {
+      color: #0f172a;
+    }
+
+    .section {
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #0f3460;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 4px;
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-title span.number {
+      background: #0f3460;
+      color: #ffffff;
+      font-size: 8pt;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-right: 8px;
+      font-weight: 600;
+    }
+
+    .section-desc {
+      font-size: 8.5pt;
+      color: #64748b;
+      margin-top: -6px;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field-group {
+      margin-bottom: 10px;
+    }
+
+    .field-label {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 4px;
+    }
+
+    .checkbox-item {
+      display: inline-flex;
+      align-items: center;
+      font-size: 8.5pt;
+      color: #334155;
+    }
+
+    .box-check {
+      width: 13px;
+      height: 13px;
+      border: 1.5px solid #64748b;
+      border-radius: 2px;
+      margin-right: 6px;
+      display: inline-block;
+    }
+
+    .fill-box {
+      border: 1px dashed #cbd5e1;
+      background: #fafafa;
+      border-radius: 4px;
+      padding: 8px;
+      min-height: 28px;
+      font-size: 8.5pt;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .table-container {
+      width: 100%;
+      margin-top: 8px;
+      border-collapse: collapse;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    td {
+      color: #334155;
+    }
+
+    .table-striped tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    .highlight-card {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 3px solid #16a34a;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      color: #166534;
+      margin-top: 6px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .web-nav {
+      background: #0b1e32;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .web-nav-brand {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .web-nav-links {
+      display: flex;
+      gap: 12px;
+    }
+    .web-nav-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .web-nav-link:hover {
+      color: #ffffff;
+      background: rgba(255,255,255,0.08);
+    }
+    .web-nav-link.active {
+      color: #ffffff;
+      background: #2563eb;
+    }
+    .assessment-container {
+      max-width: 1000px;
+      margin: 24px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
+    }
+  </style>
+</head>
+<body style="background: #f1f5f9;">
+
+  <!-- BARRA DE NAVEGAÇÃO SUPERIOR -->
+  <div class="web-nav">
+    <div class="web-nav-brand">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#38bdf8;"></span>
+      Automação AMS SAP &bull; Agentes Inteligentes
+    </div>
+    <div class="web-nav-links">
+      <a href="index.html" class="web-nav-link">1. Arquitetura & Mockup</a>
+      <a href="assessment.html" class="web-nav-link active">2. Questionário de Requisitos</a>
+    </div>
+  </div>
+
+  <div class="assessment-container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-content">
+      <div class="badge">Questionário de Descoberta & Levantamento de Requisitos</div>
+      <h1>Automação do Suporte AMS SAP com Agentes Inteligentes de IA</h1>
+      <p class="subtitle">Mapeamento de Processos, Conectividade, Segurança e Governança Operacional</p>
+    </div>
+  </div>
+
+  <!-- OBJETIVO -->
+  <div class="objective-box">
+    <p><strong>Objetivo deste documento:</strong> Coletar as informações técnicas, funcionais e de infraestrutura necessárias para dimensionar e estruturar a esteira de <strong>Agentes de Inteligência Artificial Especializados</strong> para o suporte e sustentação de aplicações SAP (AMS N1, N2 e apoio a N3). O processo foi desenhado para atuar de forma segura, com princípio do menor privilégio e supervisão humana (Human-in-the-Loop).</p>
+  </div>
+
+  <!-- SEÇÃO 1 -->
+  <div class="section">
+    <div class="section-title"><span class="number">1</span> Escopo Funcional, Volumetria e Processo de AMS</div>
+    <div class="section-desc">Identifica os módulos prioritários e o fluxo operacional de suporte.</div>
+
+    <div class="field-group">
+      <div class="field-label">1.1 Módulos SAP no escopo inicial do projeto:</div>
+      <div class="checkbox-group">
+        <span class="checkbox-item"><span class="box-check"></span> FI (Finanças)</span>
+        <span class="checkbox-item"><span class="box-check"></span> CO (Controladoria)</span>
+        <span class="checkbox-item"><span class="box-check"></span> MM (Compras / Estoque)</span>
+        <span class="checkbox-item"><span class="box-check"></span> SD (Vendas / Faturamento)</span>
+        <span class="checkbox-item"><span class="box-check"></span> PP (Produção)</span>
+        <span class="checkbox-item"><span class="box-check"></span> PM (Manutenção)</span>
+        <span class="checkbox-item"><span class="box-check"></span> QM (Qualidade)</span>
+        <span class="checkbox-item"><span class="box-check"></span> HR / HCM (RH)</span>
+        <span class="checkbox-item"><span class="box-check"></span> BASIS (Adm. Sistema)</span>
+        <span class="checkbox-item"><span class="box-check"></span> ABAP (Customizados)</span>
+      </div>
+      <div class="fill-box" style="margin-top: 6px;">Outros módulos ou especificidades da operação: ________________________________________________</div>
+    </div>
+
+    <div class="field-group" style="margin-top: 10px;">
+      <div class="field-label">1.2 Níveis de Atuação dos Agentes na Esteira de Atendimento:</div>
+      <div style="font-size: 8.5pt; color: #334155; line-height: 1.6;">
+        <div style="margin-bottom: 4px;"><span class="box-check"></span> <strong>Nível 1 (Triagem & Atendimento Básico):</strong> Interpretação da mensagem do usuário, categorização automática no ITSM, conferência de evidências mínimas obrigatórias e esclarecimento de dúvidas frequentes de processos de negócio.</div>
+        <div style="margin-bottom: 4px;"><span class="box-check"></span> <strong>Nível 2 (Diagnóstico Técnico & Resoluções Conhecidas):</strong> Coleta automatizada de logs no SAP (Dumps, jobs cancelados, filas travadas, IDocs em erro) e execução de procedimentos operacionais padrão (SOPs).</div>
+        <div><span class="box-check"></span> <strong>Nível 3 (Apoio a ABAP & Casos Complexos):</strong> Pré-análise de código customizado (Z/Y), identificação da linha exata da falha e busca cruzada de Notas Oficiais da SAP (SAP OSS Notes).</div>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 10px;">
+      <div class="field-label">1.3 Volumetria e Métricas Operacionais:</div>
+      <div class="grid-2">
+        <div class="fill-box">Volume médio de chamados SAP / mês: _________</div>
+        <div class="fill-box">Tamanho estimado do Backlog atual: _________</div>
+      </div>
+      <div class="fill-box" style="margin-top: 6px;">Quais são os 5 a 10 tipos de incidentes mais frequentes hoje? (Ex.: IDocs 51, erro de faturamento, job abortado, falta de autorização SU53, bloqueio de usuário):<br><br></div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2 -->
+  <div class="section">
+    <div class="section-title"><span class="number">2</span> Base de Conhecimento e Histórico de Chamados (RAG)</div>
+    <div class="section-desc">Insumos para capacitar os agentes na metodologia de solução específica da empresa.</div>
+
+    <div class="field-group">
+      <div class="field-label">2.1 Histórico de Chamados Resolvidos:</div>
+      <div class="checkbox-group">
+        <span class="checkbox-item"><span class="box-check"></span> Disponível para extração (últimos 6 a 12 meses)</span>
+        <span class="checkbox-item"><span class="box-check"></span> Formato CSV / Excel</span>
+        <span class="checkbox-item"><span class="box-check"></span> Formato JSON / API</span>
+      </div>
+      <div style="font-size: 8pt; color: #64748b; margin-top: 3px;">Campos essenciais: Descrição do problema pelo usuário, Categoria/Módulo, Causa raiz identificada e Solução aplicada.</div>
+    </div>
+
+    <div class="field-group" style="margin-top: 8px;">
+      <div class="field-label">2.2 Procedimentos Operacionais Padrão (SOPs / Runbooks) e Documentações Z:</div>
+      <div class="checkbox-group">
+        <span class="checkbox-item"><span class="box-check"></span> Existem Manuais/SOPs de resolução de erros conhecidos</span>
+        <span class="checkbox-item"><span class="box-check"></span> Há documentação funcional/técnica de programas customizados (Z/Y)</span>
+      </div>
+      <div class="fill-box" style="margin-top: 4px;">Onde estão armazenados atualmente? (Ex.: Confluence, SharePoint, Wiki interna, anexos do SolMan): ________________________</div>
+    </div>
+  </div>
+
+  <!-- QUEBRA DE PÁGINA PARA VISUAL LIMPO -->
+  <div class="page-break"></div>
+
+  <!-- SEÇÃO 3 -->
+  <div class="section">
+    <div class="section-title"><span class="number">3</span> Plataforma de Gestão de Chamados (ITSM)</div>
+    <div class="section-desc">Mapeamento da integração para que os agentes possam ler, enriquecer e responder tickets.</div>
+
+    <div class="grid-2">
+      <div class="field-group">
+        <div class="field-label">3.1 Ferramenta de ITSM em uso:</div>
+        <div class="checkbox-group" style="flex-direction: column; gap: 4px;">
+          <span class="checkbox-item"><span class="box-check"></span> ServiceNow</span>
+          <span class="checkbox-item"><span class="box-check"></span> Jira Service Management</span>
+          <span class="checkbox-item"><span class="box-check"></span> SAP Solution Manager (SolMan)</span>
+          <span class="checkbox-item"><span class="box-check"></span> BMC Helix / Remedy</span>
+          <span class="checkbox-item"><span class="box-check"></span> Outro: __________________</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">3.2 Capacidades da API do ITSM:</div>
+        <div class="checkbox-group" style="flex-direction: column; gap: 4px;">
+          <span class="checkbox-item"><span class="box-check"></span> API REST disponível para integração</span>
+          <span class="checkbox-item"><span class="box-check"></span> Permite Webhooks (notificação em tempo real)</span>
+          <span class="checkbox-item"><span class="box-check"></span> Permite inclusão de comentários internos</span>
+          <span class="checkbox-item"><span class="box-check"></span> Permite resposta direta ao usuário final</span>
+          <span class="checkbox-item"><span class="box-check"></span> Permite leitura/download de anexos (prints)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4 -->
+  <div class="section">
+    <div class="section-title"><span class="number">4</span> Conectividade e Arquitetura do Ambiente SAP</div>
+    <div class="section-desc">Requisitos para comunicação segura entre a camada de agentes e o ambiente SAP.</div>
+
+    <div class="grid-2">
+      <div class="field-group">
+        <div class="field-label">4.1 Versão do SAP:</div>
+        <div class="checkbox-group" style="flex-direction: column; gap: 4px;">
+          <span class="checkbox-item"><span class="box-check"></span> SAP ECC 6.0 (EHP: _____)</span>
+          <span class="checkbox-item"><span class="box-check"></span> SAP S/4HANA On-Premise (Versão: _____)</span>
+          <span class="checkbox-item"><span class="box-check"></span> SAP S/4HANA Cloud (RISE with SAP)</span>
+          <span class="checkbox-item"><span class="box-check"></span> Banco de dados: HANA / Oracle / SQL / Outro</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">4.2 Ambientes Disponíveis para o Projeto:</div>
+        <div class="checkbox-group" style="flex-direction: column; gap: 4px;">
+          <span class="checkbox-item"><span class="box-check"></span> Sandbox (SBX) - Conexões preliminares</span>
+          <span class="checkbox-item"><span class="box-check"></span> Desenvolvimento (DEV) - Construção técnica</span>
+          <span class="checkbox-item"><span class="box-check"></span> Homologação (QAS/UAT) - Validação de assertividade</span>
+          <span class="checkbox-item"><span class="box-check"></span> Produção (PRD) - Somente leitura p/ diagnóstico</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 10px;">
+      <div class="field-label">4.3 Protocolos de Integração e Rede Corporativa:</div>
+      <div class="checkbox-group">
+        <span class="checkbox-item"><span class="box-check"></span> RFC / BAPI Direta (SAP NetWeaver RFC SDK)</span>
+        <span class="checkbox-item"><span class="box-check"></span> OData / REST APIs (SAP Gateway)</span>
+        <span class="checkbox-item"><span class="box-check"></span> SAP BTP / Cloud Connector</span>
+        <span class="checkbox-item"><span class="box-check"></span> Web Services SOAP</span>
+      </div>
+      <div class="fill-box" style="margin-top: 6px;">Exigências de Rede: [ ] VPN Site-to-Site &nbsp;&nbsp; [ ] Whitelist de IPs no Firewall &nbsp;&nbsp; [ ] Direct Connect / ExpressRoute &nbsp;&nbsp; [ ] Proxy Corporativo</div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5 -->
+  <div class="section">
+    <div class="section-title"><span class="number">5</span> Segurança, Usuário Técnico e Perfis no SAP (PFCG)</div>
+    <div class="section-desc">Princípio do menor privilégio: o agente acessa estritamente o necessário para diagnosticar erros.</div>
+
+    <div class="field-group">
+      <div class="field-label">5.1 Perfil de Autorização Requerido (Acesso Restrito em Modo Leitura / Display):</div>
+      <table class="table-striped">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Transação / Objeto</th>
+            <th style="width: 50%;">Finalidade Operacional no Suporte</th>
+            <th style="width: 25%;">Disponibilidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SU53</strong></td>
+            <td>Diagnóstico de falhas de autorização de usuários que abriram chamado</td>
+            <td>[ ] Aprovado &nbsp; [ ] Em análise</td>
+          </tr>
+          <tr>
+            <td><strong>ST22</strong></td>
+            <td>Leitura de Dumps ABAP em tempo real gerados na ocorrência do erro</td>
+            <td>[ ] Aprovado &nbsp; [ ] Em análise</td>
+          </tr>
+          <tr>
+            <td><strong>SM21</strong></td>
+            <td>Análise do System Log do SAP no intervalo de tempo do incidente</td>
+            <td>[ ] Aprovado &nbsp; [ ] Em análise</td>
+          </tr>
+          <tr>
+            <td><strong>SM37</strong></td>
+            <td>Consulta de status e logs de execução de Jobs em background abortados</td>
+            <td>[ ] Aprovado &nbsp; [ ] Em análise</td>
+          </tr>
+          <tr>
+            <td><strong>WE02 / WE05</strong></td>
+            <td>Monitoramento de status, dados de controle e registros de IDocs</td>
+            <td>[ ] Aprovado &nbsp; [ ] Em análise</td>
+          </tr>
+          <tr>
+            <td><strong>SM58 / SMQ1 / SMQ2</strong></td>
+            <td>Monitoramento de filas RFC síncronas/assíncronas bloqueadas</td>
+            <td>[ ] Aprovado &nbsp; [ ] Em análise</td>
+          </tr>
+          <tr>
+            <td><strong>Tabelas de Negócio</strong></td>
+            <td>Acesso display a tabelas específicas do escopo (ex.: BKPF, EKKO, VBAK)</td>
+            <td>[ ] Aprovado &nbsp; [ ] Em análise</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-card">
+      <strong>Tipo de Usuário SAP:</strong> Recomenda-se a criação de usuário técnico tipo <strong>System (B)</strong> ou <strong>Communication (C)</strong> sem permissão de login interativo (SAP GUI), garantindo total auditoria e controle de acesso.
+    </div>
+  </div>
+
+  <!-- QUEBRA DE PÁGINA PARA VISUAL LIMPO -->
+  <div class="page-break"></div>
+
+  <!-- SEÇÃO 6 -->
+  <div class="section">
+    <div class="section-title"><span class="number">6</span> Governança de IA, Segurança da Informação (InfoSec) e LGPD</div>
+    <div class="section-desc">Garantia de conformidade, privacidade e soberania dos dados corporativos.</div>
+
+    <div class="field-group">
+      <div class="field-label">6.1 Provedores de Modelos de Inteligência Artificial Homologados pela Empresa:</div>
+      <div class="checkbox-group" style="flex-direction: column; gap: 4px;">
+        <span class="checkbox-item"><span class="box-check"></span> <strong>Azure OpenAI Service:</strong> Instância privada executada sob a assinatura e tenant corporativo da própria empresa.</span>
+        <span class="checkbox-item"><span class="box-check"></span> <strong>AWS Bedrock:</strong> Instância privada em ambiente AWS do cliente (Claude, Llama, Titan).</span>
+        <span class="checkbox-item"><span class="box-check"></span> <strong>Google Cloud Vertex AI:</strong> Instância privada em ambiente GCP do cliente (Gemini).</span>
+        <span class="checkbox-item"><span class="box-check"></span> <strong>Modelos Locais / On-Premise:</strong> Execução isolada em servidores dedicados sem saída para a internet.</span>
+        <span class="checkbox-item"><span class="box-check"></span> <strong>APIs Comerciais Diretas:</strong> OpenAI Enterprise / Anthropic.</span>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top: 10px;">
+      <div class="field-label">6.2 Tratamento de Dados Pessoais (LGPD / GDPR) e Diretrizes de Sigilo:</div>
+      <div class="checkbox-group">
+        <span class="checkbox-item"><span class="box-check"></span> Há necessidade de módulo de mascaramento de dados (Data Masking) para PII / Dados Bancários</span>
+        <span class="checkbox-item"><span class="box-check"></span> Exigência de termo de não retenção de dados para treinamento de modelos públicos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 7 -->
+  <div class="section">
+    <div class="section-title"><span class="number">7</span> Matriz de Autonomia e Supervisão Humana (Human-in-the-Loop)</div>
+    <div class="section-desc">Definição do grau de autonomia progressiva da automação no ciclo de vida dos chamados.</div>
+
+    <div style="font-size: 8.5pt; color: #334155; line-height: 1.6;">
+      <div style="border: 1px solid #cbd5e1; border-radius: 4px; padding: 8px 12px; margin-bottom: 8px; background: #f8fafc;">
+        <strong>[ ] Fase 1 — Modo Copilot / Diagnóstico Assistido (Recomendado para início):</strong><br>
+        Os agentes de IA executam toda a triagem no ITSM, consultam os logs e transações técnicas no SAP, buscam na base de conhecimento e <strong>geram uma nota técnica interna estruturada com o diagnóstico exato e a solução recomendada</strong>. O analista humano do AMS revisa a recomendação antes de aplicar qualquer alteração ou responder ao usuário.
+      </div>
+      <div style="border: 1px solid #cbd5e1; border-radius: 4px; padding: 8px 12px; margin-bottom: 8px;">
+        <strong>[ ] Fase 2 — Resoluções Padronizadas com Aprovação por Clique:</strong><br>
+        Para incidentes de catálogo fechado e baixo risco (ex.: reprocessamento de IDoc travado por lock passageiro, reexecução de job pontual abortado), o agente prepara a ação e aguarda apenas o botão de confirmação do operador humano.
+      </div>
+      <div style="border: 1px solid #cbd5e1; border-radius: 4px; padding: 8px 12px;">
+        <strong>[ ] Fase 3 — Resolução Autônoma para Incidentes Operacionais Pré-Aprovados:</strong><br>
+        Resolução e encerramento automatizado com registro integral de logs de auditoria no chamado.
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 8 -->
+  <div class="section">
+    <div class="section-title"><span class="number">8</span> Matriz de Stakeholders e Pontos Focais do Projeto</div>
+    <div class="section-desc">Indicação dos responsáveis pelas frentes necessárias para viabilizar o projeto.</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30%;">Responsabilidade</th>
+          <th style="width: 35%;">Nome do Responsável</th>
+          <th style="width: 35%;">E-mail / Telefone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Líder de AMS / Operações SAP</strong><br><span style="font-size: 7.5pt; color: #64748b;">Validação funcional e aprovação de fluxos</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Administrador SAP BASIS</strong><br><span style="font-size: 7.5pt; color: #64748b;">Criação de usuário técnico e conectividade</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Segurança SAP / PFCG</strong><br><span style="font-size: 7.5pt; color: #64748b;">Concessão de perfis e autorizações mínimas</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Administrador da Ferramenta de ITSM</strong><br><span style="font-size: 7.5pt; color: #64748b;">Chaves de API do ServiceNow/Jira/SolMan</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Segurança da Informação (InfoSec / CISO)</strong><br><span style="font-size: 7.5pt; color: #64748b;">Homologação de LLMs, rede e LGPD</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-note">
+    Documento confidencial para fins de planejamento e levantamento técnico de projeto. &bull; Versão 1.0 &bull; Suporte AMS SAP com Agentes Inteligentes
+  </div>
+
+  </div> <!-- fim .assessment-container -->
+</body>
+</html>
